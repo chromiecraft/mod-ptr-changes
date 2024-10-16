@@ -1,8 +1,8 @@
 UPDATE `command` SET `security` = 0 WHERE `name` IN (
-'additem set', 'additem', 'appear', 'aura', 'bags clear', 'bags', 'cast back', 'cast dest', 'cast dist',
-'cast self', 'cast', 'cfbg race', 'cfbg', 'cheat casttime', 'cheat cooldown', 'cheat explore', 'cheat god',
-'cheat power', 'cheat taxi', 'cheat waterwalk', 'cheat', 'combatstop', 'cooldown', 'damage', 'die', 'dismount',
-'distance', 'gobject activate', 'gobject add temp', 'gobject respawn', 'gps', 'help', 'levelup', 'mailbox', 'maxskill',
+'additem set', 'additem', 'appear', 'aura', 'bags clear', 'bags', 'cast back', 'cast dest', 'cast dist', 'cast self',
+'cast', 'cfbg race', 'cfbg', 'cheat casttime', 'cheat cooldown', 'cheat explore', 'cheat god', 'cheat power',
+'cheat taxi', 'cheat waterwalk', 'cheat', 'combatstop', 'cooldown', 'damage', 'die', 'dismount', 'distance',
+'gm fly', 'gobject activate', 'gobject add temp', 'gobject respawn', 'gps', 'help', 'levelup', 'mailbox', 'maxskill',
 'npc add temp', 'npc info', 'recall', 'respawn', 'revive', 'save', 'server info', 'summon', 'teleport', 'unaura', 'unlearn');
 
 UPDATE `command` SET `security` = 0 WHERE `name` LIKE "debug%";
