@@ -649,3 +649,4 @@ UPDATE `command` SET `security` = 0 WHERE `name` LIKE "modify%";
 UPDATE `command` SET `security` = 0 WHERE `name` LIKE "morph%";
 UPDATE `command` SET `security` = 0 WHERE `name` LIKE "quest%";
 UPDATE `command` SET `security` = 0 WHERE `name` LIKE "deserter%";
+UPDATE `command` SET `security` = 0 WHERE `name` LIKE "transmog%";
