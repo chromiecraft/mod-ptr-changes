@@ -632,9 +632,6 @@ INSERT INTO `command` (`name`, `security`, `help`) VALUES
 UPDATE `command`
 SET `security` = 0
 WHERE `name` IN (
-UPDATE `command`
-SET `security` = 0
-WHERE `name` IN (
     'additem',
     'additem set',
     'appear',
