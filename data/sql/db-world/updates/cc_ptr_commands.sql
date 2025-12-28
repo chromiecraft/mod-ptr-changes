@@ -629,12 +629,65 @@ INSERT INTO `command` (`name`, `security`, `help`) VALUES
 ('template enable', 3, 'Syntax: .template enable $IndexID\nEnables the given template to be applied.'),
 ('template list', 0, 'Syntax: .template list\nList character template sets.');
 
-UPDATE `command` SET `security` = 0 WHERE `name` IN (
-'additem set', 'additem', 'appear', 'aura', 'bags clear', 'bags', 'cast back', 'cast dest', 'cast dist', 'cast self', 'cast', 'cfbg race',
-'cfbg', 'character changefaction', 'character changerace', 'character customize', 'cheat casttime', 'cheat cooldown', 'cheat explore',
-'cheat god', 'cheat power', 'cheat taxi', 'cheat waterwalk', 'cheat', 'combatstop', 'cooldown', 'damage', 'die', 'dismount', 'distance',
-'gm fly', 'gobject activate', 'gobject respawn', 'gps', 'help', 'levelup', 'mailbox', 'maxskill', 'npc info', 'npc tame', 'recall',
-'reset talents', 'respawn', 'revive', 'save', 'server info', 'setskill', 'teleport', 'template apply', 'template list', 'unaura', 'unlearn');
+UPDATE `command`
+SET `security` = 0
+WHERE `name` IN (
+    'additem',
+    'additem set',
+    'appear',
+    'aura',
+    'bags',
+    'bags clear',
+    'cast',
+    'cast back',
+    'cast dest',
+    'cast dist',
+    'cast self',
+    'cfbg',
+    'cfbg race',
+    'character changefaction',
+    'character changerace',
+    'character customize',
+    'cheat',
+    'cheat casttime',
+    'cheat cooldown',
+    'cheat explore',
+    'cheat god',
+    'cheat power',
+    'cheat taxi',
+    'cheat waterwalk',
+    'combatstop',
+    'cooldown',
+    'damage',
+    'die',
+    'dismount',
+    'distance',
+    'gameobject',
+    'gameobject id',
+    'gm fly',
+    'gobject activate',
+    'gobject respawn',
+    'gps',
+    'help',
+    'levelup',
+    'mailbox',
+    'maxskill',
+    'npc info',
+    'npc tame',
+    'opendoor',
+    'recall',
+    'reset talents',
+    'respawn',
+    'revive',
+    'save',
+    'server info',
+    'setskill',
+    'teleport',
+    'template apply',
+    'template list',
+    'unaura',
+    'unlearn'
+);
 
 UPDATE `command` SET `security` = 0 WHERE `name` LIKE "debug%";
 UPDATE `command` SET `security` = 0 WHERE `name` LIKE "event%";
@@ -649,3 +702,4 @@ UPDATE `command` SET `security` = 0 WHERE `name` LIKE "modify%";
 UPDATE `command` SET `security` = 0 WHERE `name` LIKE "morph%";
 UPDATE `command` SET `security` = 0 WHERE `name` LIKE "quest%";
 UPDATE `command` SET `security` = 0 WHERE `name` LIKE "deserter%";
+UPDATE `command` SET `security` = 0 WHERE `name` LIKE "transmog%";
