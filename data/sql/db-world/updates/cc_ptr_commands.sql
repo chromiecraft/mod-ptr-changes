@@ -685,7 +685,6 @@ WHERE `name` IN (
     'unaura',
     'unlearn'
 );
-);
 
 UPDATE `command` SET `security` = 0 WHERE `name` LIKE "debug%";
 UPDATE `command` SET `security` = 0 WHERE `name` LIKE "event%";
