@@ -1,3 +1,4 @@
+-- PTR commands
 DELETE FROM `command`;
 INSERT INTO `command` (`name`, `security`, `help`) VALUES
 ('account',0,'Syntax: .account\r\n\r\nDisplay the access level of your account and the email adress if you possess the necessary permissions.'),
