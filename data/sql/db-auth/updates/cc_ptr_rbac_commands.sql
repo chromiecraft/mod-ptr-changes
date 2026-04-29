@@ -22,6 +22,7 @@
 -- ranges we manage, then re-insert. Keeps re-runs and rebases clean.
 DELETE FROM `rbac_linked_permissions` WHERE `id` = 199 AND `linkedId` IN (
     258, 259, 260, 261, 262, -- bf start/stop/switch/timer/enable
+    300,                     -- debug (parent — gates ALL debug subcommands)
     593,                     -- npc info (also gates `npc guid`)
     737                      -- tele (the `.teleport` of the pre-RBAC tree)
 );
@@ -34,6 +35,17 @@ INSERT INTO `rbac_linked_permissions` (`id`, `linkedId`) VALUES
 (199, 260), -- Command: bf switch
 (199, 261), -- Command: bf timer
 (199, 262), -- Command: bf enable
+-- Debug: PR #24641 collapses every `.debug *` subcommand onto a single
+-- permission, RBAC_PERM_COMMAND_DEBUG (300). The old PTR file only lowered
+-- 5 specific subcommands (debug hostile, debug play, debug play cinematic,
+-- debug play movie, debug play sound) to sec 1 -- the rest stayed at sec 3.
+-- Under RBAC there is no surgical equivalent: granting 300 exposes the
+-- entire debug tree (~80 subcommands). This includes potentially harmful
+-- commands such as `.debug send opcode`, `.debug Mod32Value`,
+-- `.debug setitemvalue`, `.debug setbit`, `.debug setvalue`. PTR realms
+-- accept this trade-off; production realms must NOT use this module
+-- without first splitting the debug perm upstream in #24641.
+(199, 300), -- Command: debug (broad -- see warning above)
 -- NPC inspection: the .npc info and .npc guid commands share perm 593 in
 -- PR #24641 (cs_npc.cpp). Granting 593 covers both, matching the original
 -- cc_ptr_commands.sql intent of `npc guid` / `npc info` at low sec.
@@ -49,13 +61,10 @@ INSERT INTO `rbac_linked_permissions` (`id`, `linkedId`) VALUES
 -- The original cc_ptr_commands.sql also lowered the following commands. They
 -- are deliberately omitted here:
 --
---   cache info, cache refresh, debug hostile, debug play cinematic,
---   debug play movie, debug play sound
---     -> All map to a single perm `RBAC_PERM_COMMAND_DEBUG` (300) in PR
---        #24641. Granting 300 to players would expose every `.debug *`
---        subcommand (~80+ commands, including dangerous ones such as
---        `.debug send opcode`). The right upstream fix is to split the
---        debug perm; until that lands, leave debug commands gated to GM.
+--   cache info, cache refresh
+--     -> Both map to RBAC_PERM_COMMAND_DEBUG (300), which is granted above
+--        for the debug-subcommand parity. So these are effectively covered
+--        by the same debug grant -- listed here for completeness only.
 --
 --   gobject respawn
 --     -> No matching perm in PR #24641. cs_gobject.cpp does not register a
